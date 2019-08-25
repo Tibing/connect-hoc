@@ -2,18 +2,21 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 
 import { Connect } from './connect';
 import { decrement, increment, reset } from './counter.actions';
+import { Container } from './container';
 
+@Container
 @Connect({
   selectors: { count: 'count' },
   actions: { increment, decrement, reset },
 })
-
 @Component({
   selector: 'app-counter',
+  styles: [`
+  `],
   template: `
-    <button id="increment" (click)="increment.emit()">Increment</button>
+    <button #button id="increment" (click)="increment.emit()">Increment</button>
 
-    <div>Current Count: {{ count }}</div>
+    <div #div>Current Count: {{ count }}</div>
 
     <button id="decrement" (click)="decrement.emit()">Decrement</button>
 
